@@ -3,9 +3,9 @@ import rospy
 from std_msgs.msg import Float32
 import random
 
-def talker():
+def simple_publisher():
     pub = rospy.Publisher('my_random_float', Float32, queue_size=10)
-    rospy.init_node('simple_publisher', anonymous=True)
+    rospy.init_node('simple_publisher', anonymous=False)
     rate = rospy.Rate(20)
     while not rospy.is_shutdown():
         rand_num = 10*random.random() % rospy.get_time()
@@ -15,6 +15,6 @@ def talker():
  
 if __name__ == '__main__':
     try:
-        talker()
+        simple_publisher()
     except rospy.ROSInteruptException:
         pass
