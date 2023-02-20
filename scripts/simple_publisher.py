@@ -8,7 +8,7 @@ def simple_publisher():
     rospy.init_node('simple_publisher', anonymous=False)
     rate = rospy.Rate(20)
     while not rospy.is_shutdown():
-        rand_num = 10*random.random() % rospy.get_time()
+        rand_num = 10*random.random()
         rospy.loginfo(rand_num)
         pub.publish(rand_num)
         rate.sleep()
