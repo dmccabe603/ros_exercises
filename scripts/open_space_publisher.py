@@ -7,8 +7,8 @@ import numpy as np
 
 def open_space_publisher():
     rospy.init_node('open_space_publisher', anonymous=False)
-
-    pub = rospy.Publisher("open_space", OpenSpace, queue_size=10)
+    Pub_top = rospy.get_param("Pub_top", "open_space")
+    pub = rospy.Publisher(Pub_top, OpenSpace, queue_size=10)
     space = OpenSpace()
 
     def callback(scan):
@@ -22,8 +22,8 @@ def open_space_publisher():
             rospy.loginfo(max_val)
             rospy.loginfo(angle)
             rate.sleep()
-    
-    rospy.Subscriber('fake_scan', LaserScan, callback)
+    Sub_topic = rospy.get_param("Sub_topic", "fake_scan")
+    rospy.Subscriber(Sub_topic, LaserScan, callback)
     
     rospy.spin()
 
